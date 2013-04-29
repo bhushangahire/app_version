@@ -1,4 +1,11 @@
-= App Version
+= App Version Gem
+This is a Gem version of App Version Plugin (More detail about the plugin please see below)
+
+== Install
+Put this line into your Gemfile:
+  gem "app_version", :git => "git://github.com/SysMO-DB/app_version.git"
+
+= App Version Plugin
 
 This is a simple plugin that makes it easy to manage the version number of your
 Rails application. The version numbers supported by this plugin look like
