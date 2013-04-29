@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Phillip Toland","Quyen Nguyen"]
   s.email       = 'nttqa22001@yahoo.com'
   s.files       = ["lib/app_version.rb",
-  		   "RakeFile",
-  		   "README",
+  		   "Rakefile",
+  		   "README.rdoc",
   		   "app_version.gemspec"]
   s.homepage    = 'https://github.com/SysMO-DB/app_version'
   s.require_paths = ["lib"]
