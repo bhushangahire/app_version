@@ -149,5 +149,6 @@ if defined?(Rails.root.to_s) && File.exists?("#{(Rails.root.to_s)}/config/versio
   APP_VERSION = AppVersion.load "#{(Rails.root.to_s)}/config/version.yml"
   puts "APP VERSION = #{APP_VERSION.to_s}"
 else
+  puts "Rails root is #{Rails.root}"
   puts "APP_VERSION not set"
 end
