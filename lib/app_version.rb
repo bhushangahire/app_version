@@ -1,5 +1,5 @@
 require 'yaml'
-
+require 'rails/railtie'
 
 class AppVersion
   include Comparable
@@ -116,6 +116,18 @@ class AppVersion
     str
   end
 
+  class AppVersion::Railtie < Rails::Railtie
+    config.before_initialize do |app|
+      app.class.const_set :APP_VERSION, begin
+        AppVersion.load("#{Rails.root}/config/version.yml")
+      rescue IOError, SystemCallError => error
+        warn error.inspect
+        warn error.backtrace.join("\n")
+        AppVersion.new
+      end
+    end
+  end
+
 private
 
   def get_build_from_subversion
@@ -145,10 +157,3 @@ private
   end
 end
 
-if defined?(Rails.root.to_s) && File.exists?("#{(Rails.root.to_s)}/config/version.yml")
-  APP_VERSION = AppVersion.load "#{(Rails.root.to_s)}/config/version.yml"
-  puts "APP VERSION = #{APP_VERSION.to_s}"
-else
-  puts "Rails root is #{Rails.root}"
-  puts "APP_VERSION not set"
-end
