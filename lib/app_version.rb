@@ -118,13 +118,7 @@ class AppVersion
 
   class AppVersion::Railtie < Rails::Railtie
     config.before_initialize do |app|
-      app.class.const_set :APP_VERSION, begin
-        AppVersion.load("#{Rails.root}/config/version.yml")
-      rescue IOError, SystemCallError => error
-        warn error.inspect
-        warn error.backtrace.join("\n")
-        AppVersion.new
-      end
+      APP_VERSION = AppVersion.load "#{(Rails.root.to_s)}/config/version.yml"
     end
   end
 
